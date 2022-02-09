@@ -35,7 +35,16 @@ class _WebViewAppState extends State<WebViewApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WebViewStack(controller: controller),
+      body: SafeArea(
+        left: false,
+        top: true,
+        right: false,
+        bottom: true,
+        minimum: const EdgeInsets.all(1.0),
+        child: WebViewStack(
+          controller: controller,
+        ),
+      ),
     );
   }
 }
