@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'menu.dart';
-import 'navigation_controls.dart';
 import 'web_view_stack.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -37,13 +35,6 @@ class _WebViewAppState extends State<WebViewApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('TSM'),
-        actions: [
-          NavigationControls(controller: controller),
-          Menu(controller: controller), // Add this linez
-        ],
-      ),
       body: WebViewStack(controller: controller),
     );
   }
