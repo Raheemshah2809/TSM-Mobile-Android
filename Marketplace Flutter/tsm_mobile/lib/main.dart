@@ -4,13 +4,9 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'menu.dart';
 import 'navigation_controls.dart';
 import 'web_view_stack.dart';
-import "package:geolocator/geolocator.dart";
+import 'package:permission_handler/permission_handler.dart';
 
-Future<void> main() async {
-  LocationPermission permission = await Geolocator.checkPermission();
-  await Geolocator.requestPermission();
-  await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
+void main() {
   runApp(
     const MaterialApp(
       home: WebViewApp(),
@@ -24,8 +20,19 @@ class WebViewApp extends StatefulWidget {
   State<WebViewApp> createState() => _WebViewAppState();
 }
 
+void requestPermission() async {
+  Map<Permission, PermissionStatus> statuses =
+      await [Permission.location, Permission.camera].request();
+}
+
 class _WebViewAppState extends State<WebViewApp> {
   final controller = Completer<WebViewController>();
+
+  @override
+  void initState() {
+    super.initState();
+    requestPermission();
+  }
 
   @override
   Widget build(BuildContext context) {

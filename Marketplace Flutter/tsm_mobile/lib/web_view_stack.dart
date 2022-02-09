@@ -3,9 +3,8 @@ import 'dart:async';
 // import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:location/location.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class WebViewStack extends StatefulWidget {
   const WebViewStack({required this.controller, Key? key}) : super(key: key);
@@ -35,6 +34,7 @@ class _WebViewStackState extends State<WebViewStack> {
               allowFileAccess: true,
               domStorageEnabled: true,
               geolocationEnabled: true,
+              useHybridComposition: true,
             ),
           ),
           androidOnGeolocationPermissionsShowPrompt:
