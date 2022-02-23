@@ -1,10 +1,9 @@
 import 'dart:async';
-// import 'dart:convert';
-// import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class WebViewStack extends StatefulWidget {
   const WebViewStack({required this.controller, Key? key}) : super(key: key);
@@ -28,8 +27,7 @@ class _WebViewStackState extends State<WebViewStack> {
                   'https://studentmarketplace.netlify.app/index.html')),
           initialOptions: InAppWebViewGroupOptions(
             crossPlatform: InAppWebViewOptions(
-              javaScriptEnabled: true,
-            ),
+                javaScriptEnabled: true, useShouldOverrideUrlLoading: true),
             android: AndroidInAppWebViewOptions(
               allowFileAccess: true,
               domStorageEnabled: true,
@@ -41,6 +39,9 @@ class _WebViewStackState extends State<WebViewStack> {
               (InAppWebViewController controller, String origin) async {
             return GeolocationPermissionShowPromptResponse(
                 origin: origin, allow: true, retain: true);
+          },
+          shouldOverrideUrlLoading: (controller, navigationAction) async {
+            return NavigationActionPolicy.ALLOW;
           },
         )
       ],
