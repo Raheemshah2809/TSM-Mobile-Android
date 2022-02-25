@@ -24,7 +24,7 @@ class _WebViewStackState extends State<WebViewStack> {
         InAppWebView(
           initialUrlRequest: URLRequest(
               url: Uri.parse(
-                  'https://studentmarketplace.netlify.app/index.html')),
+                  'https://thestudentmarketplace.netlify.app/index.html')),
           initialOptions: InAppWebViewGroupOptions(
             crossPlatform: InAppWebViewOptions(
                 javaScriptEnabled: true, useShouldOverrideUrlLoading: true),
